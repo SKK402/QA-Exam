@@ -8,34 +8,37 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeSuite;
-
 import com.test.Base.Base;
 import com.test.ReportUtils.ExtentReport;
+import org.openqa.selenium.By;
+
 
 public class Login extends Base {
-	@BeforeSuite
-	public void setup() {
-	    WebDriver driver = new ChromeDriver();
-	    driver.get("https://www.amazon.in/");
-	    ExtentReport.setDriver(driver);
-	}
-	
-    @FindBy(id = "nav-link-accountList") 
-    WebElement loginButton;
+    WebDriver driver;
 
-    public Login() {
-        driver.get("https://www.amazon.in/?&tag=googhydrabk1-21&ref=pd_sl_5szpgfto9i_e");
-        PageFactory.initElements(driver, this);
+    By username = By.id("user-name");
+    By password = By.id("password");
+    By loginBtn = By.id("login-button");
+
+    public Login(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public String getTitle() {
-        String title = driver.getTitle();
-        System.out.println("Page title is: " + title);
-        return title;
+    public void Username(String standard_user) {
+        driver.findElement(username).sendKeys("standard_user");
+    }
+
+    public void Password(String secret_sauce) {
+        driver.findElement(password).sendKeys("secret_sauce");
     }
 
     public void clickLogin() {
-        loginButton.click();
-        System.out.println("Login button clicked.");
+        driver.findElement(loginBtn).click();
+    }
+
+    public void login(String standard_user, String secret_sauce) {
+        Username(standard_user);
+        Password(secret_sauce);
+        clickLogin();
     }
 }
