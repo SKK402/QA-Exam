@@ -48,8 +48,10 @@ public class Base {
 	        driver.manage().window().maximize();
 	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 	        js = (JavascriptExecutor)driver;
+	        driver.get("https://www.saucedemo.com");
 			System.out.println("chrome driver initialized");
 			
 		}
-	}
+	
+	    }
 }
